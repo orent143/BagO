@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRlytics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <div class="sidebar">
+            <h2>HRFinance</h2>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('predict_page') }}">Predict</a></li>
+                <li><a href="{{ url_for('employees') }}">Results</a></li>
+            </ul>
+        </div>
+        
+
+        <!-- Main Content -->
+        <div class="main-content">
+            {% block content %}
+            <!-- Default content or dynamic content based on page -->
+            <h1>Welcome to the HR Finance Machine Learning Dashboard</h1>
+            <p>Choose a section from the sidebar to get started!</p>
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>

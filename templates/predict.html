@@ -1,0 +1,194 @@
+{% extends "index.html" %}
+
+{% block content %}
+<h1>Predict HR Outcomes</h1>
+
+<!-- Form container for different predictions -->
+<div class="form-container">
+    <!-- Predict Salary Form -->
+    <div class="form-section">
+        <h2>Predict Salary</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <label for="salary_file">Upload CSV for Salary Prediction:</label>
+            <input type="file" id="salary_file" name="salary_file" accept=".csv" required>
+            <button type="submit">Predict Salary</button>
+        </form>
+        {% if salary_data %}
+            <h3>Salary Prediction Results</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Years of Experience</th>
+                        <th>Performance Score</th>
+                        <th>Predicted Salary</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in salary_data %}
+                    <tr>
+                        <td>{{ row.years_experience }}</td>
+                        <td>{{ row.performance_score }}</td>
+                        <td>{{ row.predicted_salary }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+
+    <!-- Predict Churn Form -->
+    <div class="form-section">
+        <h2>Predict Employee Churn</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <label for="churn_file">Upload CSV for Churn Prediction:</label>
+            <input type="file" id="churn_file" name="churn_file" accept=".csv" required>
+            <button type="submit">Predict Churn</button>
+        </form>
+        {% if churn_data %}
+            <h3>Churn Prediction Results</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Job Satisfaction</th>
+                        <th>Tenure (years)</th>
+                        <th>Churn Prediction</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in churn_data %}
+                    <tr>
+                        <td>{{ row.satisfaction }}</td>
+                        <td>{{ row.tenure }}</td>
+                        <td>{{ row.churn_prediction }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+
+    <!-- Predict Performance Form -->
+    <div class="form-section">
+        <h2>Classify Employee Performance</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <label for="performance_file">Upload CSV for Performance Prediction:</label>
+            <input type="file" id="performance_file" name="performance_file" accept=".csv" required>
+            <button type="submit">Predict Performance</button>
+        </form>
+        {% if performance_data %}
+            <h3>Performance Prediction Results</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Performance Score</th>
+                        <th>Years of Experience</th>
+                        <th>Performance Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in performance_data %}
+                    <tr>
+                        <td>{{ row.performance }}</td>
+                        <td>{{ row.experience }}</td>
+                        <td>{{ row.performance_category }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+
+    <!-- Predict Suitability Form -->
+    <div class="form-section">
+        <h2>Classify Job Candidate Suitability</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <label for="suitability_file">Upload CSV for Suitability Prediction:</label>
+            <input type="file" id="suitability_file" name="suitability_file" accept=".csv" required>
+            <button type="submit">Predict Suitability</button>
+        </form>
+        {% if suitability_data %}
+            <h3>Suitability Prediction Results</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Years of Experience</th>
+                        <th>Test Score</th>
+                        <th>Suitability</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in suitability_data %}
+                    <tr>
+                        <td>{{ row.experience }}</td>
+                        <td>{{ row.score }}</td>
+                        <td>{{ row.suitability }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+
+    <!-- Predict Promotion Form -->
+    <div class="form-section">
+        <h2>Predict Promotion Decision</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <label for="promotion_file">Upload CSV for Promotion Prediction:</label>
+            <input type="file" id="promotion_file" name="promotion_file" accept=".csv" required>
+            <button type="submit">Predict Promotion</button>
+        </form>
+        {% if promotion_data %}
+            <h3>Promotion Prediction Results</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Performance Score</th>
+                        <th>Tenure</th>
+                        <th>Promotion Decision</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in promotion_data %}
+                    <tr>
+                        <td>{{ row.performance }}</td>
+                        <td>{{ row.tenure }}</td>
+                        <td>{{ row.promotion }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+
+    <!-- Predict Leadership Success Form -->
+    <div class="form-section">
+        <h2>Predict Leadership Role Success</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <label for="success_file">Upload CSV for Leadership Success Prediction:</label>
+            <input type="file" id="success_file" name="success_file" accept=".csv" required>
+            <button type="submit">Predict Leadership Success</button>
+        </form>
+        {% if success_data %}
+            <h3>Leadership Success Prediction Results</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Leadership Score</th>
+                        <th>Years of Experience</th>
+                        <th>Leadership Role Success</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in success_data %}
+                    <tr>
+                        <td>{{ row.leadership_score }}</td>
+                        <td>{{ row.experience }}</td>
+                        <td>{{ row.success }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

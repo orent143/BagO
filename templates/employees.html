@@ -1,0 +1,185 @@
+{% extends "index.html" %}
+
+{% block content %}
+<h1>Employee Prediction Results</h1>
+
+<!-- Create a container for all the prediction results -->
+<div class="prediction-grid">
+
+    <!-- Salary Prediction Result Container -->
+    <div class="prediction-container">
+        <h3>Salary Prediction Results</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Years of Experience</th>
+                    <th>Performance Score</th>
+                    <th>Predicted Salary</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if salary_data %}
+                    {% for row in salary_data %}
+                        <tr>
+                            <td>{{ row.years_experience }}</td>
+                            <td>{{ row.performance_score }}</td>
+                            <td>{{ row.predicted_salary }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="3">No data available</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Churn Prediction Result Container -->
+    <div class="prediction-container">
+        <h3>Churn Prediction Results</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Job Satisfaction</th>
+                    <th>Tenure (years)</th>
+                    <th>Churn Prediction</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if churn_data %}
+                    {% for row in churn_data %}
+                        <tr>
+                            <td>{{ row.job_satisfaction }}</td>
+                            <td>{{ row.tenure_years }}</td>
+                            <td>{% if row.churn_prediction == 1 %} Likely to churn {% else %} Not likely to churn {% endif %}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="3">No data available</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Performance Prediction Result Container -->
+    <div class="prediction-container">
+        <h3>Performance Prediction Results</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Performance Score</th>
+                    <th>Years of Experience</th>
+                    <th>Performance Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if performance_data %}
+                    {% for row in performance_data %}
+                        <tr>
+                            <td>{{ row.performance }}</td>
+                            <td>{{ row.experience }}</td>
+                            <td>{{ row.performance_category }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="3">No data available</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Suitability Prediction Result Container -->
+    <div class="prediction-container">
+        <h3>Suitability Prediction Results</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Experience</th>
+                    <th>Score</th>
+                    <th>Suitability</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if suitability_data %}
+                    {% for row in suitability_data %}
+                        <tr>
+                            <td>{{ row.experience }}</td>
+                            <td>{{ row.score }}</td>
+                            <td>{{ row.suitability }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="3">No data available</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Promotion Prediction Result Container -->
+    <div class="prediction-container">
+        <h3>Promotion Prediction Results</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Performance Score</th>
+                    <th>Tenure</th>
+                    <th>Promotion Decision</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if promotion_data %}
+                    {% for row in promotion_data %}
+                        <tr>
+                            <td>{{ row.performance }}</td>
+                            <td>{{ row.tenure }}</td>
+                            <td>{{ row.promotion }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="3">No data available</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Success Prediction Result Container -->
+    <div class="prediction-container">
+        <h3>Success Prediction Results</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Leadership Score</th>
+                    <th>Experience</th>
+                    <th>Success Prediction</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if success_data %}
+                    {% for row in success_data %}
+                        <tr>
+                            <td>{{ row.leadership_score }}</td>
+                            <td>{{ row.experience }}</td>
+                            <td>{{ row.success }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="3">No data available</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+{% endblock %}

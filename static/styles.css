@@ -1,0 +1,183 @@
+/* General body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* App container for sidebar and main content */
+.app-container {
+    display: flex;
+    height: 100%;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 200px;
+    background-color: #0c0c0c;
+    color: white;
+    padding: 20px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    font-family: 'Arial', sans-serif;
+    font-weight: 700;
+}
+
+.sidebar h2 {
+    color: white;
+    font-size: 30px;
+    margin-bottom: 40px; 
+    font-family: 'Arial', sans-serif;
+    font-weight: 900;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 15px;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;  
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.sidebar ul li a:hover {
+    color: #3a3a3a;
+}
+
+/* Main content area */
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+}
+
+/* Form container using CSS Grid */
+.form-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    grid-gap: 20px; /* Spacing between the forms */
+    margin-top: 20px;
+    box-shadow: #0c0c0c;
+
+}
+
+h1{
+    font-family: 'Arial', sans-serif;
+    font-weight: 900;
+}
+/* Style each form */
+form {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fafafa;
+}
+
+form h2 {
+    margin-top: 0;
+    font-family: 'Arial', sans-serif;
+    font-weight: 900;
+    color: #0c0c0cda;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-family: 'Arial', sans-serif;
+    font-weight: 600;
+    color: #0c0c0cab;
+
+}
+
+form input {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: #0c0c0c;
+
+}
+
+form button {
+    padding: 10px 20px;
+    background-color: #0073df;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    transition: color 0.8s; 
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #0073df62;
+    
+}
+
+.prediction-container {
+    max-height: 400px; /* Set a static height for the container */
+    overflow-y: auto;  /* Enable vertical scrolling if the content overflows */
+    margin-bottom: 20px; /* Space between containers */
+    border: 1px solid #ddd; /* Border for aesthetics */
+    padding: 10px; /* Add padding for inner spacing */
+    border-radius: 8px; /* Rounded corners for a nicer look */
+    box-shadow: #0c0c0c;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse; /* Collapse table borders for neatness */
+}
+
+table th, table td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd; /* Table border for visual clarity */
+}
+
+table th {
+    background-color: #f2f2f2; /* Light gray background for headers */
+    font-weight: bold;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .prediction-grid {
+        grid-template-columns: 1fr; /* Stack the containers in one column */
+    }
+}
+
+@media (max-width: 768px) {
+    .form-container {
+        grid-template-columns: 1fr; /* Stack the forms in one column */
+    }
+
+    .app-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 10px;
+        width: 100%;
+    }
+}
