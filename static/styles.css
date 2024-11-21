@@ -137,7 +137,7 @@ body {
 
 .card h2 {
     font-size: 1.5rem;
-    color: #007bff;
+    color: #111111;
     margin-bottom: 15px;
 }
 
@@ -148,7 +148,7 @@ body {
 }
 
 .card .btn-primary {
-    background-color: #007bff;
+    background-color: #070707f3;
     color: white;
     padding: 10px 20px;
     text-decoration: none;
@@ -157,7 +157,7 @@ body {
 }
 
 .card .btn-primary:hover {
-    background-color: #0056b3;
+    background-color: #0c0c0c56;
 }
 
 /* Form container using CSS Grid */
@@ -213,7 +213,7 @@ form input {
 
 form button {
     padding: 10px 20px;
-    background-color: #0073df;
+    background-color: #070707f3;
     color: white;
     border: none;
     border-radius: 10px;
@@ -222,7 +222,7 @@ form button {
 }
 
 form button:hover {
-    background-color: #0073df62;
+    background-color: #0c0c0c56;
     
 }
 
