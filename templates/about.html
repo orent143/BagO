@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRlytics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="sidebar">
+            <h2>HRlytics</h2>
+            <ul>
+                <li><a href="{{ url_for('home') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="{{ url_for('predict_page') }}"><i class="fas fa-chart-line"></i> Predict HR Metrics</a></li>
+                <li><a href="{{ url_for('employees') }}"><i class="fas fa-users"></i> Analytics</a></li>
+                <li><a href="{{ url_for('about') }}"><i class="fas fa-info-circle"></i> About Us</a></li>
+            </ul>
+            <ul class="logout-container">
+                <li><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+            
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <h1>About HRlytics</h1>
+            <h2>Our Mission</h2>
+            <p>At HRlytics, our mission is to leverage machine learning to drive data-driven decision-making within HR departments. We focus on predictive analytics to help organizations optimize their HR processes, including salary predictions, employee retention, performance management, and talent acquisition.</p>
+
+            <h2>Our Vision</h2>
+            <p>We strive to be the global leader in HR analytics, transforming the way companies manage their workforce through innovative machine learning solutions.</p>
+
+            <h2>Our Team</h2>
+            <p>Our team consists of two superpower people, working together to create solutions that are both effective and easy to understand for businesses of all sizes and to save the world from bad elements.</p>
+
+            <h2>Contact Us</h2>
+            <p>If you'd like to learn more about HRlytics or have any inquiries, please <a href="mailto:contact@hrlytics.com">email us</a>.</p>
+        </div>
+    </div>
+</body>
+</html>

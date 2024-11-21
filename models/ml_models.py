@@ -19,7 +19,6 @@ def train_linear_regression():
     X = df[['years_experience', 'performance_score']]
     y = df['salary']
     
-    # Train-test split
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     
     model = LinearRegression()
@@ -28,22 +27,16 @@ def train_linear_regression():
     return model
 
 def predict_salary(model, years_experience, performance_score):
-    # Create a DataFrame with correct column names matching the training data
     input_data = pd.DataFrame({
         'years_experience': [years_experience],
         'performance_score': [performance_score]
     })
     
-    # Predict salary using the model
     predicted_salary = model.predict(input_data)
     
-    return predicted_salary[0]  # Return the single predicted salary value
-
-
+    return predicted_salary[0]  
 
 def train_naive_bayes():
-    # Example of training a Naive Bayes model on job satisfaction and tenure years
-    # Sample data (for illustration purposes, replace with your actual data)
     data = {
         'job_satisfaction': [3, 2, 4, 5, 1, 3, 5, 2, 4, 1],
         'tenure_years': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
@@ -52,7 +45,6 @@ def train_naive_bayes():
 
     df = pd.DataFrame(data)
 
-    # Split into features (X) and target (y)
     X = df[['job_satisfaction', 'tenure_years']]
     y = df['churn']
 

@@ -5,27 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HRlytics</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="app-container">
         <div class="sidebar">
-            <h2>HRFinance</h2>
+            <h2>HRlytics</h2>
             <ul>
-                <li><a href="{{ url_for('home') }}">Dashboard</a></li>
-                <li><a href="{{ url_for('predict_page') }}">Predict</a></li>
-                <li><a href="{{ url_for('employees') }}">Results</a></li>
+                <li><a href="{{ url_for('home') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="{{ url_for('predict_page') }}"><i class="fas fa-chart-line"></i> Predict HR Metrics</a></li>
+                <li><a href="{{ url_for('employees') }}"><i class="fas fa-users"></i> Analytics</a></li>
+                <li><a href="{{ url_for('about') }}"><i class="fas fa-info-circle"></i> About Us</a></li>
+            </ul>
+            <!-- Logout button added at the bottom -->
+            <ul class="logout-container">
+                <li><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
             </ul>
         </div>
-        
 
         <!-- Main Content -->
         <div class="main-content">
             {% block content %}
-            <!-- Default content or dynamic content based on page -->
-            <h1>Welcome to the HR Finance Machine Learning Dashboard</h1>
-            <p>Choose a section from the sidebar to get started!</p>
+            <section class="dashboard-overview">
+                <h1>Welcome to the HRlytics Machine Learning Dashboard</h1>
+                <p>Use the tools on the sidebar to get started with predictive HR metrics, analytics, and more.</p>
+
+                <div class="card-container">
+                    <!-- Card for Salary Prediction -->
+                    <div class="card">
+                        <h2><i class="fas fa-dollar-sign"></i> Salary Prediction</h2>
+                        <p>Predict an employee's salary based on years of experience and performance score using Linear Regression.  Get actionable insights on employee compensation.</p>
+                        <a href="{{ url_for('predict_page') }}" class="btn-primary">Predict Now</a>
+                    </div>
+
+                    <!-- Card for Churn Prediction -->
+                    <div class="card">
+                        <h2><i class="fas fa-exchange-alt"></i> Employee Retention</h2>
+                        <p>Analyze the likelihood of an employee leaving the company using Naive Bayes. Reduce turnover and enhance employee retention strategies.</p>
+                        <a href="{{ url_for('predict_page') }}" class="btn-primary">Predict Now</a>
+                    </div>
+
+                    <!-- Card for Performance Prediction -->
+                    <div class="card">
+                        <h2><i class="fas fa-star"></i> Performance Evaluation</h2>
+                        <p>Evaluate employee performance using K-Nearest Neighbors (KNN). Identify high performers and areas for improvement.</p>
+                        <a href="{{ url_for('predict_page') }}" class="btn-primary">Evaluate Now</a>
+                    </div>
+
+                    <!-- Card for Promotion Prediction -->
+                    <div class="card">
+                        <h2><i class="fas fa-arrow-up"></i> Promotion Potential</h2>
+                        <p>Assess an employee’s promotion potential using Support Vector Machine (SVM). Make informed decisions on career progression.</p>
+                        <a href="{{ url_for('predict_page') }}" class="btn-primary">Evaluate Now</a>
+                    </div>
+
+                    <!-- Card for Success Prediction -->
+                    <div class="card">
+                        <h2><i class="fas fa-trophy"></i> Employee Success</h2>
+                        <p>Predict an employee’s success in leadership roles using a Decision Tree. Decision Trees use a tree-like model of decisions and their possible consequences, including chance event outcomes, resource costs, and utility.</p>
+                        <a href="{{ url_for('predict_page') }}" class="btn-primary">Predict Now</a>
+                    </div>
+                      <!-- Card for Leadership Success Prediction (ANN) -->
+                      <div class="card">
+                        <h2><i class="fas fa-cogs"></i> Leadership Success</h2>
+                        <p>Use <strong>Artificial Neural Networks (ANNs)</strong> to predict success in leadership and key roles based on experience and leadership scores. This model captures complex, non-linear relationships between these factors to provide an accurate success prediction.</p>
+                        <a href="{{ url_for('predict_page') }}" class="btn-primary">Predict Now</a>
+                    </div>
+                </div>
+            </section>
             {% endblock %}
         </div>
     </div>
+
 </body>
 </html>

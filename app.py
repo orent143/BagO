@@ -9,9 +9,8 @@ from models.ml_models import (
 import os
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)  # Add this to enable session functionality
+app.secret_key = os.urandom(24)  
 
-# Load models
 salary_model = train_linear_regression()
 churn_model = train_naive_bayes()
 performance_model = train_knn()
@@ -19,13 +18,12 @@ suitability_model = train_svm()
 promotion_model = train_decision_tree()
 success_model = train_ann()
 
-# Helper function to validate required columns in CSV
 def validate_columns(df, required_columns):
     return all(col in df.columns for col in required_columns)
 
 @app.route('/')
 def home():
-    return render_template('index.html')  # Render the homepage
+    return render_template('index.html')  
 
 @app.route('/predict', methods=['GET', 'POST'])
 def predict_page():
@@ -43,11 +41,12 @@ def predict_page():
             if file.filename.endswith('.csv'):
                 try:
                     df = pd.read_csv(file)
-                    required_columns = ['years_experience', 'performance_score']
+                    required_columns = ['employee_name', 'years_experience', 'performance_score']
                     if validate_columns(df, required_columns):
                         for _, row in df.iterrows():
                             predicted_salary = predict_salary(salary_model, row['years_experience'], row['performance_score'])
                             salary_data.append({
+                                'employee_name': row['employee_name'],
                                 'years_experience': int(row['years_experience']),
                                 'performance_score': float(row['performance_score']),
                                 'predicted_salary': float(predicted_salary)
@@ -63,11 +62,12 @@ def predict_page():
             if file.filename.endswith('.csv'):
                 try:
                     df = pd.read_csv(file)
-                    required_columns = ['job_satisfaction', 'tenure_years']
+                    required_columns = ['employee_name', 'job_satisfaction', 'tenure_years']
                     if validate_columns(df, required_columns):
                         for _, row in df.iterrows():
                             churn_prediction = predict_churn(churn_model, row['job_satisfaction'], row['tenure_years'])
                             churn_data.append({
+                                'employee_name': row['employee_name'],
                                 'job_satisfaction': float(row['job_satisfaction']),
                                 'tenure_years': int(row['tenure_years']),
                                 'churn_prediction': int(churn_prediction[0])
@@ -83,11 +83,12 @@ def predict_page():
             if file.filename.endswith('.csv'):
                 try:
                     df = pd.read_csv(file)
-                    required_columns = ['performance_score', 'years_experience']
+                    required_columns = ['employee_name', 'performance_score', 'years_experience']
                     if validate_columns(df, required_columns):
                         for _, row in df.iterrows():
                             performance_prediction = predict_performance(performance_model, row['performance_score'], row['years_experience'])
                             performance_data.append({
+                                'employee_name': row['employee_name'],
                                 'performance': float(row['performance_score']),
                                 'experience': int(row['years_experience']),
                                 'performance_category': performance_prediction[0]
@@ -103,11 +104,12 @@ def predict_page():
             if file.filename.endswith('.csv'):
                 try:
                     df = pd.read_csv(file)
-                    required_columns = ['years_of_experience', 'test_score']
+                    required_columns = ['employee_name', 'years_of_experience', 'test_score']
                     if validate_columns(df, required_columns):
                         for _, row in df.iterrows():
                             suitability_prediction = predict_suitability(suitability_model, row['years_of_experience'], row['test_score'])
                             suitability_data.append({
+                                'employee_name': row['employee_name'],
                                 'experience': int(row['years_of_experience']),
                                 'score': float(row['test_score']),
                                 'suitability': suitability_prediction[0]
@@ -123,11 +125,12 @@ def predict_page():
             if file.filename.endswith('.csv'):
                 try:
                     df = pd.read_csv(file)
-                    required_columns = ['performance_score', 'years_with_company']
+                    required_columns = ['employee_name', 'performance_score', 'years_with_company']
                     if validate_columns(df, required_columns):
                         for _, row in df.iterrows():
                             promotion_prediction = predict_promotion(promotion_model, row['performance_score'], row['years_with_company'])
                             promotion_data.append({
+                                'employee_name': row['employee_name'],
                                 'performance': float(row['performance_score']),
                                 'tenure': int(row['years_with_company']),
                                 'promotion': promotion_prediction[0]
@@ -143,11 +146,12 @@ def predict_page():
             if file.filename.endswith('.csv'):
                 try:
                     df = pd.read_csv(file)
-                    required_columns = ['leadership_score', 'years_of_experience']
+                    required_columns = ['employee_name', 'leadership_score', 'years_of_experience']
                     if validate_columns(df, required_columns):
                         for _, row in df.iterrows():
                             success_prediction = predict_success(success_model, row['leadership_score'], row['years_of_experience'])
                             success_data.append({
+                                'employee_name': row['employee_name'],
                                 'leadership_score': float(row['leadership_score']),
                                 'experience': int(row['years_of_experience']),
                                 'success': success_prediction[0]
@@ -165,15 +169,13 @@ def predict_page():
         session['promotion_data'] = promotion_data
         session['success_data'] = success_data
 
-        # Redirect to employees page to show results
         return redirect(url_for('employees'))
 
-    return render_template('predict.html')  # For GET request, show the prediction form
+    return render_template('predict.html')  
 
 
 @app.route('/employees')
 def employees():
-    # Retrieve prediction results from session
     salary_data = session.get('salary_data', [])
     churn_data = session.get('churn_data', [])
     performance_data = session.get('performance_data', [])
@@ -189,7 +191,15 @@ def employees():
                            promotion_data=promotion_data,
                            success_data=success_data)
 
+@app.route('/about')
+def about():
+    return render_template('about.html')  
 
+@app.route('/logout')
+def logout():
+    session.clear()  
+    flash('You have been logged out.', 'success')  
+    return redirect(url_for('index.html'))  
 
 if __name__ == '__main__':
     app.run(debug=True)
